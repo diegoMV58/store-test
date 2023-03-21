@@ -1,0 +1,73 @@
+<app-loading-spinner *ngIf="loading == 1"></app-loading-spinner>
+<div class="alert alert-success" *ngIf="success == 1" role="alert" style="text-align: center;">
+  the purchase has been executed successfully!
+  </div>
+<div *ngIf="loading == 0" class="modal-dialog  custom-modal">
+  <div class="modal-content">
+<div class="modal-header">
+  <h4 class="modal-title">Shopping Cart</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="modal.dismiss()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <br />
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"></th>
+        <th scope="col">title</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Sub-total</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of products; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          <img
+            src="{{ item.product.image }}"
+            class=".img-fluid. img-thumbnail"
+          />
+        </td>
+        <td>{{ item.product.title }}</td>
+        <td><input type="number" class="form-control" value="{{ item.quantity }}"  [(ngModel)]="qnt[item.id]" id="quantity" min="1" max="{{ item.product.stock }}"></td>
+        <td>${{ item.product.price }}</td>
+        <td>${{ item.product.price * qnt[item.id] }}</td>
+
+        <td>
+         <button (click)="delete(item.id);">
+          <i  class="bi bi-trash"></i>
+        </button>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>Total: ${{ total }}</h2>
+  <div
+    class="alert alert-danger"
+    *ngIf="products == null"
+    role="alert"
+    style="text-align: center"
+  >
+    the cart is empty
+  </div>
+</div>
+<div class="modal-footer text-align" >
+  <button type="button" class="btn btn-secondary" (click)="modal.close()">
+    Close
+  </button>
+  <button type="button" class="btn btn-primary" (click)="update()">Update items</button>
+  <button type="button" class="btn btn-success" (click)="purchase()">Check Out</button>
+</div>
+</div>
+</div>
+

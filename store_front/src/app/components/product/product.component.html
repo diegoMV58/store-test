@@ -1,0 +1,50 @@
+<br>
+<div class="alert alert-success" *ngIf="success == 1" role="alert" style="text-align: center;">
+  the item has been added to the cart
+  </div>
+<div class="container mt-3 card">
+  <div class="card-header">
+
+  </div>
+  <div class="row">
+    <div class="col-md-6 product-image border rounded">
+      <img src="{{ product['image']}}" alt="Product Image" class=".img-fluid. mx-auto d-block">
+    </div>
+    <div class="col-md-6">
+      <h2 class="product-name">{{ product['title']}}</h2>
+      <p class="product-description">{{ product['description']}}</p>
+      <nav aria-label="breadcrumb"> <ol class="breadcrumb">
+        <li class="breadcrumb-item"><i class="bi bi-star-fill yellow"></i>{{ product['rating']}}</li>
+        <li class="breadcrumb-item active" aria-current="page">{{ product['category']}}</li>
+      </ol></nav>
+      <p>Stock: <b>{{ product['stock']}}</b></p>
+
+        <div class="form-group">
+          <label for="quantity">Quantity</label>
+          <input type="number" class="form-control" (change)="totalQ()" [(ngModel)]="qnt" id="quantity" min="1" max="{{ product['stock'] }}">
+        </div>
+        <br *ngIf="qnt > product['stock']">
+        <div class="alert alert-warning" *ngIf="qnt > product['stock']" role="alert">
+
+        the amount entered is greater than the amount available
+        </div>
+        <br>
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col">
+        <button  type="submit" class="btn btn-disble " *ngIf="qnt === 0 || qnt == null || qnt > product['stock']" disabled>Add to Cart</button>
+        <button (click)="addToCart();" class="btn btn-primary " *ngIf="qnt > 0 && qnt <= product['stock']">Add to Cart</button>
+        </div>
+        <div class="col">
+        <b style="height: 50px;
+        line-height: 40px;
+        text-align: center;">Total: ${{ total }}</b>
+      </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="card-footer">
+
+  </div>
+</div>
+

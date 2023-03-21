@@ -1,0 +1,52 @@
+/* Set the background color of the navigation bar */
+.navbar {
+  background-color: #180b0b;
+  border-bottom: 1px solid #000000;
+
+}
+header{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+/* Style the website's name or logo */
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
+
+/* Style the shopping cart icon */
+.fa-shopping-cart {
+  font-size: 20px;
+  color: #333333;
+}
+
+/* Style the login button */
+.nav-link {
+  font-size: 16px;
+  color: #333333;
+}
+
+/* Style the search bar */
+.form-control {
+  font-size: 16px;
+  border-radius: 20px;
+  border-color: #e2e2e2;
+}
+
+/* Style the search button */
+.btn-outline-success {
+  font-size: 16px;
+  border-radius: 20px;
+  border-color: #e2e2e2;
+  color: #333333;
+}
+
+/* Style the active state of navigation items */
+.navbar-nav .nav-item .nav-link.active,
+.navbar-nav .nav-item .nav-link:focus {
+  background-color: transparent;
+  color: #333333;
+  border-bottom: 2px solid #333333;
+}
